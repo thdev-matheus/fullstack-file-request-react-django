@@ -31,23 +31,29 @@ export const BlackBox = styled.div`
   height: 100vh;
 
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
 
-  & > p {
-    & > span {
-      color: var(--ligth-pink);
+  & > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
 
-      transition: 0.8s;
-
-      cursor: pointer;
-
-      :hover {
-        color: var(--pink);
+    & > p {
+      & > span {
+        color: var(--ligth-pink);
 
         transition: 0.8s;
+
+        cursor: pointer;
+
+        :hover {
+          color: var(--pink);
+
+          transition: 0.8s;
+        }
       }
     }
   }
