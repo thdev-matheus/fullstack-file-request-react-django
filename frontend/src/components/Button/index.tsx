@@ -3,7 +3,10 @@ import { StyledButton } from "./styles";
 import { IButtonProps } from "./types";
 
 export const Button = forwardRef<HTMLInputElement, IButtonProps>(
-  ({ text, width, height, borderRadius, bgColor, color, padding, ...rest }) => {
+  (
+    { text, width, height, borderRadius, bgColor, color, padding, ...rest },
+    ref
+  ) => {
     return (
       <StyledButton
         width={width}

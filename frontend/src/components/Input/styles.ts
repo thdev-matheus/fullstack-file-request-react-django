@@ -65,4 +65,8 @@ export const InputContainer = styled.div<ISInputProps>`
     font-size: 16pt;
     margin-right: 0.5rem;
   }
+
+  .password_eye {
+    cursor: pointer;
+  }
 `;

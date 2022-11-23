@@ -29,7 +29,16 @@ export const LoginForm = () => {
 
       sessionStorage.setItem("token", response.data.token);
       sessionStorage.setItem("username", response.data.user.username);
-      toast.success("Sucesso!", { icon: "🦆🟢" });
+      toast.success("Sucesso!", { icon: "🦆🟢", autoClose: 3000 });
+      setTimeout(() => {
+        toast.success(
+          `Seja bem-vindo(a) ao File Request, ${response.data.user.username}!`,
+          {
+            icon: "🦆🟢",
+            autoClose: 3000,
+          }
+        );
+      }, 500);
 
       navigate("/dashboard");
     } catch (error) {
