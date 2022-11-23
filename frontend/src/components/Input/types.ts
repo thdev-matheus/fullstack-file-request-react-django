@@ -1,19 +1,14 @@
-import { FieldValues, UseFormRegister } from "react-hook-form";
+import { InputHTMLAttributes } from "react";
 import { IconType } from "react-icons";
 
-export interface IInputProps {
+export interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   icon?: IconType;
-  name: string;
   error?: string;
-  placeholder?: string;
   type?: string;
-  register: UseFormRegister<FieldValues>;
 
   width?: string;
-
   borderRadius?: string;
-
   borderColor?: string;
   bgColor?: string;
   color?: string;

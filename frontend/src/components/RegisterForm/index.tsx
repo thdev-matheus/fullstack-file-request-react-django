@@ -1,35 +1,60 @@
-import { useForm } from "react-hook-form";
 import { FiUser } from "react-icons/fi";
 import { Button } from "../Button";
 import { Input } from "../Input";
 import { Container } from "./styles";
+import { IFormData } from "../../globalTypes";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { registerSchema } from "../../schemas";
 
 export const RegisterForm = () => {
-  const { register } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<IFormData>({
+    reValidateMode: "onSubmit",
+    resolver: yupResolver(registerSchema),
+  });
+
+  const onSubmitRegister = (data: IFormData) => {
+    console.log(data);
+    reset();
+  };
+
   return (
-    <Container onSubmit={() => {}}>
+    <Container onSubmit={handleSubmit(onSubmitRegister)}>
       <Input
         label="Usuário"
         icon={FiUser}
-        name="username"
+        error={errors.username?.message?.toString()}
         placeholder="Digite seu username"
-        register={register}
+        {...register("username")}
         width="20rem"
       />
       <Input
         label="E-mail"
         icon={FiUser}
-        name="email"
+        error={errors.email?.message?.toString()}
         placeholder="Digite seu e-mail"
-        register={register}
+        {...register("email")}
         width="20rem"
       />
       <Input
         label="Senha"
         icon={FiUser}
-        name="password"
+        error={errors.password?.message?.toString()}
         placeholder="Digite uma senha"
-        register={register}
+        {...register("password")}
+        width="20rem"
+      />
+      <Input
+        label="Confirmação"
+        icon={FiUser}
+        error={errors.confirmPassword?.message?.toString()}
+        placeholder="Confirme a senha"
+        {...register("confirmPassword")}
         width="20rem"
       />
       <Button
