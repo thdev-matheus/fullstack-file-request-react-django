@@ -6,8 +6,12 @@ import { loginSchema } from "../../schemas";
 import { Button } from "../Button";
 import { Input } from "../Input";
 import { Container } from "./styles";
+import { api } from "../../services/api";
+import { useNavigate } from "react-router-dom";
 
 export const LoginForm = () => {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -18,9 +22,18 @@ export const LoginForm = () => {
     resolver: yupResolver(loginSchema),
   });
 
-  const onSubmitLogin = (data: IFormData) => {
-    console.log(data);
-    reset();
+  const onSubmitLogin = async (data: IFormData) => {
+    try {
+      const response = await api.post("login/", data);
+
+      sessionStorage.setItem("token", response.data.token);
+      sessionStorage.setItem("username", response.data.user.username);
+
+      navigate("/dashboard");
+    } catch (error) {
+      console.log(error);
+      reset();
+    }
   };
 
   return (
