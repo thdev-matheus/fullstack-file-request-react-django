@@ -4,7 +4,7 @@ import { Button } from "../Button";
 import { Input } from "../Input";
 import { Container } from "./styles";
 
-export const RegisterForm = () => {
+export const LoginForm = () => {
   const { register } = useForm();
   return (
     <Container onSubmit={() => {}}>
