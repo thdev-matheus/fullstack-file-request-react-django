@@ -21,7 +21,21 @@ export const GlobalStyle = createGlobalStyle`
         --silver: #bdc3c7;
         --ligth-pink: #fd79a8;
         --pink: #e84393;
-        --red: #ff3030;;
+        --red: #ff3030;
+
+        --toastify-color-dark: #455a64;
+        --toastify-color-success: #7cb342;
+        --toastify-color-error: #f44336;
+
+        --toastify-font-family: "Ubuntu";
+
+        --toastify-text-color-dark: var(--silver);
+
+
+        // Used when no type is provided
+        --toastify-color-progress-dark: #263238;
+        --toastify-color-progress-success: var(--toastify-color-success);
+        --toastify-color-progress-error: var(--toastify-color-error);
     }
 
     body {

@@ -1,11 +1,19 @@
 import { Container, BlackBox, WhiteBox } from "./styles";
 import { RegisterForm } from "../../components/RegisterForm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LoginForm } from "../../components/LoginForm";
 import { motion, AnimatePresence, MotionConfig } from "framer-motion";
+import { toast } from "react-toastify";
 
 export const InitialPage = () => {
   const [isRegister, setIsRegister] = useState<boolean>(false);
+  useEffect(() => {
+    setTimeout(
+      () =>
+        toast("Faça login para continuar.", { icon: "🦆⚫", autoClose: 3000 }),
+      1000
+    );
+  }, []);
   return (
     <Container>
       <WhiteBox>

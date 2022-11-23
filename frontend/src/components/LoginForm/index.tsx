@@ -1,6 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { FiUser } from "react-icons/fi";
+import { FiUser, FiLock } from "react-icons/fi";
 import { IFormData } from "../../globalTypes";
 import { loginSchema } from "../../schemas";
 import { Button } from "../Button";
@@ -8,6 +8,7 @@ import { Input } from "../Input";
 import { Container } from "./styles";
 import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const LoginForm = () => {
   const navigate = useNavigate();
@@ -28,11 +29,14 @@ export const LoginForm = () => {
 
       sessionStorage.setItem("token", response.data.token);
       sessionStorage.setItem("username", response.data.user.username);
+      toast.success("Sucesso!", { icon: "🦆🟢" });
 
       navigate("/dashboard");
     } catch (error) {
-      console.log(error);
-      reset();
+      toast.error("Parece que houve um problema...", { icon: "🦆🔴" });
+      setTimeout(() => {
+        toast.error("Tente novamente!", { icon: "🦆🔴" });
+      }, 500);
     }
   };
 
@@ -48,9 +52,10 @@ export const LoginForm = () => {
       />
       <Input
         label="Senha"
-        icon={FiUser}
+        icon={FiLock}
         error={errors.password?.message?.toString()}
         placeholder="Digite sua senha"
+        type="password"
         {...register("password")}
         width="20rem"
       />
