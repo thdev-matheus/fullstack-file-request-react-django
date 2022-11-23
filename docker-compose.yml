@@ -25,7 +25,7 @@ services:
     command:
       bash -c 'while !</dev/tcp/database/5432; do sleep 1; done; python manage.py migrate'
     volumes:
-      - .:/code
+      - ./backend:/usr/app
     depends_on:
       - database
 
@@ -37,7 +37,7 @@ services:
     command:
       bash -c 'while !</dev/tcp/database/5432; do sleep 1; done; python manage.py runserver 0.0.0.0:8000'
     volumes:
-      - .:/code
+      - ./backend:/usr/app
     stdin_open: true 
     tty: true
     ports:
@@ -46,8 +46,15 @@ services:
       - database
       - migrations
 
-  # frontend:
-  #   container_name: frontend
+  frontend:
+    container_name: frontend
+    build: ./frontend
+    ports:
+      - 3000:3000
+    stdin_open: true
+    volumes:
+      - ./frontend:/usr/app
+
     
 volumes:
   filerequest:
