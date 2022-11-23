@@ -29,7 +29,7 @@ export const InputContainer = styled.div<ISInputProps>`
 
   padding: 0.5rem;
 
-  border: 2px solid ${(props) => props.borderColor};
+  border: 2px solid ${(props) => props.borderColor || "var(--white)"};
   border-radius: ${(props) => props.borderRadius || "0.8rem"};
 
   transition: 0.4s;

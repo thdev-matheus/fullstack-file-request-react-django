@@ -7,9 +7,9 @@ export const Button = ({
   height,
   type = "button",
   borderRadius,
-  bgColor = "#0984e3",
-  color = "#f9f9f9",
-  padding = "0.5rem",
+  bgColor,
+  color,
+  padding,
   ...rest
 }: IButtonProps) => {
   return (

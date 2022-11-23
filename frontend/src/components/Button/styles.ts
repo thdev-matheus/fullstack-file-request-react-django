@@ -2,16 +2,12 @@ import styled from "styled-components";
 import { IStyledButtonProps } from "./types";
 
 export const StyledButton = styled.button<IStyledButtonProps>`
-  width: ${(props) => props.width};
-  height: ${(props) => props.height};
+  width: ${(props) => props.width || "100%"};
+  height: ${(props) => props.height || "3rem"};
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: ${(props) => props.padding || "0.5rem"};
 
-  padding: ${(props) => props.padding};
-
-  border-radius: ${(props) => props.borderRadius};
+  border-radius: ${(props) => props.borderRadius || "0.8rem"};
   border: none;
 
   color: ${(props) => props.color};
@@ -25,8 +21,8 @@ export const StyledButton = styled.button<IStyledButtonProps>`
   transition: 0.6s;
 
   :hover {
-    color: ${(props) => props.theme.darkBlue || "#0984e3"};
-    background-color: ${(props) => props.theme.ligthBlue || "#74b9ff"};
+    color: ${(props) => props.hColor};
+    background-color: ${(props) => props.hBgColor};
 
     transition: 0.6s;
   }

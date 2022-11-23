@@ -7,7 +7,7 @@ import { Container } from "./styles";
 export const RegisterForm = () => {
   const { register } = useForm();
   return (
-    <Container>
+    <Container onSubmit={() => {}}>
       <Input
         label="Usuário"
         icon={FiUser}
@@ -32,7 +32,14 @@ export const RegisterForm = () => {
         register={register}
         width="20rem"
       />
-      <Button text="Cadastrar" />
+      <Button
+        type="submit"
+        text="Cadastrar"
+        height="3.5rem"
+        bgColor="var(--white)"
+        color="var(--black)"
+        hBgColor="var(--gray)"
+      />
     </Container>
   );
 };

@@ -1,10 +1,13 @@
 export interface IButtonProps {
+  text: string;
+  onClick?: () => void;
+
   width?: string;
   height?: string;
-  text: string;
   color?: string;
   bgColor?: string;
-  onClick?: () => void;
+  hColor?: string;
+  hBgColor?: string;
   type?: string;
   padding?: string;
   borderRadius?: string;
@@ -13,8 +16,10 @@ export interface IButtonProps {
 export interface IStyledButtonProps {
   width?: string;
   height?: string;
-  bgColor?: string;
   color?: string;
+  bgColor?: string;
+  hColor?: string;
+  hBgColor?: string;
   type?: string;
   padding?: string;
   borderRadius?: string;
