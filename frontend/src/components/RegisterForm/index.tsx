@@ -6,8 +6,9 @@ import { IFormData } from "../../globalTypes";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "../../schemas";
+import { IRegisterProps } from "./types";
 
-export const RegisterForm = () => {
+export const RegisterForm = ({ setIsRegister }: IRegisterProps) => {
   const {
     register,
     handleSubmit,
@@ -21,6 +22,7 @@ export const RegisterForm = () => {
   const onSubmitRegister = (data: IFormData) => {
     console.log(data);
     reset();
+    setIsRegister(false);
   };
 
   return (

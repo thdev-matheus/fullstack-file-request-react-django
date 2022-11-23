@@ -1,6 +1,7 @@
-export interface IButtonProps {
+import { ButtonHTMLAttributes } from "react";
+
+export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
-  onClick?: () => void;
 
   width?: string;
   height?: string;
@@ -8,7 +9,6 @@ export interface IButtonProps {
   bgColor?: string;
   hColor?: string;
   hBgColor?: string;
-  type?: string;
   padding?: string;
   borderRadius?: string;
 }
@@ -20,7 +20,6 @@ export interface IStyledButtonProps {
   bgColor?: string;
   hColor?: string;
   hBgColor?: string;
-  type?: string;
   padding?: string;
   borderRadius?: string;
 }

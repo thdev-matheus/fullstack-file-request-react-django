@@ -26,10 +26,7 @@ export const registerSchema = yup.object().shape({
 });
 
 export const loginSchema = yup.object().shape({
-  username: yup
-    .string()
-    .email("Digite um email válido.")
-    .required("Campo obrigatório!"),
+  username: yup.string().required("Campo obrigatório!"),
 
   password: yup.string().required("Campo obrigatório!"),
 });

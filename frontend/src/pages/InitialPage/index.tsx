@@ -22,7 +22,7 @@ export const InitialPage = () => {
                 exit={{ x: -100, opacity: 0 }}
               >
                 <h1>Cadastro</h1>
-                <RegisterForm />
+                <RegisterForm setIsRegister={setIsRegister} />
                 <p>
                   Já tem cadastro? Faça
                   <span onClick={() => setIsRegister(false)}> login</span>
