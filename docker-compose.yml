@@ -1,11 +1,11 @@
 version: '3.9'
 
 services:
-  pydb:
-    container_name: pydb
+  database:
+    container_name: database
     image: postgres:latest
     env_file:
-      - .env
+      - ./backend/.env
     ports:
       - 5050:5432
     healthcheck:
@@ -14,28 +14,28 @@ services:
       timeout: 5s
       retries: 5
       start_period: 5s
-    volumes: # Não esquecer de criaro volume para o app
+    volumes:
       - filerequest:/var/lib/postgresql/data
     
-  pymig: # Sim, tem que criar um serviço para as migrações iniciais
-    container_name: pymig
-    build: .
+  migrations:
+    container_name: migrations
+    build: ./backend
     env_file:
-      - .env
+      - ./backend/.env
     command:
-      bash -c 'while !</dev/tcp/pydb/5432; do sleep 1; done; python manage.py migrate' # comando para as migrations
+      bash -c 'while !</dev/tcp/database/5432; do sleep 1; done; python manage.py migrate'
     volumes:
       - .:/code
     depends_on:
-      - pydb
+      - database
 
-  pyapi:
-    container_name: pyapi
-    build: .
+  backend:
+    container_name: backend
+    build: ./backend
     env_file:
-      - .env
+      - ./backend/.env
     command:
-      bash -c 'while !</dev/tcp/pydb/5432; do sleep 1; done; python manage.py runserver 0.0.0.0:8000'
+      bash -c 'while !</dev/tcp/database/5432; do sleep 1; done; python manage.py runserver 0.0.0.0:8000'
     volumes:
       - .:/code
     stdin_open: true 
@@ -43,9 +43,12 @@ services:
     ports:
       - 8000:8000
     depends_on:
-      - pydb
-      - pymig
+      - database
+      - migrations
 
+  # frontend:
+  #   container_name: frontend
+    
 volumes:
   filerequest:
     external: true
