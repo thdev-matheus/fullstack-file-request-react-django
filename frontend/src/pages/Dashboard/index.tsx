@@ -1,24 +1,70 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 import { api } from "../../services/api";
 
+interface ITransaction {
+  id: string;
+  type: string;
+  date: Date;
+  value: number;
+  cpf: string;
+  card_number: string;
+  hour: Date;
+  store: string;
+  kind: string;
+}
+
+interface IStore {
+  id: string;
+  name: string;
+  owner_name: string;
+  balance: number;
+  transactions: ITransaction[];
+}
+
 export const Dashboard = () => {
-  const [file, setFile] = useState<File | null>();
+  const [file, setFile] = useState<File>();
+  const [stores, setStores] = useState<IStore[]>([]);
 
   const handleFileSubmit = async () => {
     if (file === undefined) return console.log("indefinido");
 
-    const response = await api.post(
-      "transactions/",
-      { file },
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Token ${sessionStorage.getItem("token")}`,
-        },
-      }
-    );
+    try {
+      await api.post(
+        "transactions/",
+        { file },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Token ${sessionStorage.getItem("token")}`,
+          },
+        }
+      );
 
-    console.log(response.data);
+      toast.success("Arquivo salvo com sucesso", {
+        icon: "🦆🟢",
+        autoClose: 3000,
+      });
+      setTimeout(
+        () =>
+          toast.success("Aguarde...", {
+            icon: "🦆🟢",
+            autoClose: 3000,
+          }),
+        500
+      );
+
+      const response = await api.get("stores/", {
+        headers: { Authorization: `Token ${sessionStorage.getItem("token")}` },
+      });
+
+      setTimeout(() => setStores(response.data.results), 500);
+    } catch (error) {
+      toast.error("Parece que houve um problema...", { icon: "🦆🔴" });
+      setTimeout(() => {
+        toast.error("Reveja se mandou o arquivo correto", { icon: "🦆🔴" });
+      }, 500);
+    }
   };
 
   return (
@@ -43,23 +89,13 @@ export const Dashboard = () => {
       </form>
       <div>
         {/* box dos cards */}
-        <div>
-          {" "}
-          {/* card */}
-          <span>Nome da loja</span>
-        </div>
-        <div>
-          <span>Nome da loja</span>
-        </div>
-        <div>
-          <span>Nome da loja</span>
-        </div>
-        <div>
-          <span>Nome da loja</span>
-        </div>
-        <div>
-          <span>Nome da loja</span>
-        </div>
+        {stores &&
+          stores.map((store) => (
+            <div key={store.id}>
+              {/* card */}
+              <span>{store.name}</span>
+            </div>
+          ))}
       </div>
     </div>
   );

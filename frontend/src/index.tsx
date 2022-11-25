@@ -12,7 +12,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <Context>
     <ToastContainer
-      position="top-center"
+      position="bottom-left"
       autoClose={5000}
       hideProgressBar={false}
       newestOnTop={false}
