@@ -5,26 +5,7 @@ import { toast } from "react-toastify";
 import { FormFile } from "../../components/FormFile";
 import { api } from "../../services/api";
 import { CardContainer, Container, HeaderContainer } from "./syles";
-
-interface ITransaction {
-  id: string;
-  type: string;
-  date: Date;
-  value: number;
-  cpf: string;
-  card_number: string;
-  hour: Date;
-  store: string;
-  kind: string;
-}
-
-interface IStore {
-  id: string;
-  name: string;
-  owner_name: string;
-  balance: number;
-  transactions: ITransaction[];
-}
+import { IStore } from "./types";
 
 export const Dashboard = () => {
   const [file, setFile] = useState<File>();
