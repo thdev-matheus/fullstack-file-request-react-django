@@ -40,6 +40,7 @@ export const RegisterForm = ({ setIsRegister }: IRegisterProps) => {
           autoClose: 3000,
         });
       }, 300);
+      reset();
     }
   };
 

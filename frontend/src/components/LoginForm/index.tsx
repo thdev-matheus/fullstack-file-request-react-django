@@ -46,6 +46,7 @@ export const LoginForm = () => {
       setTimeout(() => {
         toast.error("Tente novamente!", { icon: "🦆🔴" });
       }, 500);
+      reset();
     }
   };
 
