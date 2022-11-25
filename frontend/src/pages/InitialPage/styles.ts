@@ -43,7 +43,7 @@ export const BlackBox = styled.div`
 
     & > p {
       & > span {
-        color: var(--ligth-pink);
+        color: var(--light-pink);
 
         transition: 0.8s;
 

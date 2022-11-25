@@ -23,7 +23,7 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(
 
     useEffect(() => {
       type === "password" ? setIsPassword(true) : setIsPassword(false);
-    }, []);
+    }, [type]);
 
     return (
       <Container width={width} bgColor={bgColor} color={color}>
