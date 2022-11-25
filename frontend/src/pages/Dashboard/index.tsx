@@ -1,6 +1,10 @@
-import { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { FormFile } from "../../components/FormFile";
 import { api } from "../../services/api";
+import { CardContainer, Container, HeaderContainer } from "./syles";
 
 interface ITransaction {
   id: string;
@@ -25,6 +29,25 @@ interface IStore {
 export const Dashboard = () => {
   const [file, setFile] = useState<File>();
   const [stores, setStores] = useState<IStore[]>([]);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const getStores = async () => {
+      try {
+        const response = await api.get("stores/", {
+          headers: {
+            Authorization: `Token ${sessionStorage.getItem("token")}`,
+          },
+        });
+
+        setTimeout(() => setStores(response.data.results), 500);
+      } catch (_) {
+        navigate("/");
+      }
+    };
+    getStores();
+  }, []);
 
   const handleFileSubmit = async () => {
     if (file === undefined) return console.log("indefinido");
@@ -68,26 +91,38 @@ export const Dashboard = () => {
   };
 
   return (
-    <div>
-      <div>
-        <h1>Dashboard</h1>
-      </div>
-      <form
+    <Container>
+      <HeaderContainer>
+        <h1>Bem-vindo(a) ao File Request</h1>
+        <div>
+          <p>Esta é uma aplicação full stack que simula a seguinte situação:</p>
+          <p>
+            Pelo front-end o usuário enviará um arquivo .txt que contém os dados
+            das transações de algumas lojas.
+          </p>
+          <p>
+            No back-end a aplicação irá ler o arquivo e armazenar no banco de
+            dados. A partir deste ponto, estando tudo certo, o usuário terá
+            acesso às informações
+          </p>
+        </div>
+        <span>
+          {"=>"} Baixe o arquivo{" "}
+          <a href="https://drive.google.com/uc?id=11t-FKXvZyZ_2-jbCwr35BETpgrvYTVfj&authuser=1&export=download">
+            aqui
+          </a>
+          . {"<="}
+        </span>
+      </HeaderContainer>
+      <FormFile
+        setFile={setFile}
         onSubmit={(e) => {
           e.preventDefault();
           handleFileSubmit();
         }}
-      >
-        {" "}
-        {/* formulário */}
-        <input
-          type="file"
-          name="file"
-          onChange={(e) => e.target.files && setFile(e.target.files[0])}
-        />
-        <button type="submit">enviar</button>
-      </form>
-      <div>
+      />
+
+      <CardContainer>
         {/* box dos cards */}
         {stores &&
           stores.map((store) => (
@@ -96,7 +131,7 @@ export const Dashboard = () => {
               <span>{store.name}</span>
             </div>
           ))}
-      </div>
-    </div>
+      </CardContainer>
+    </Container>
   );
 };

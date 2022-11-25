@@ -6,6 +6,10 @@ import { motion, AnimatePresence, MotionConfig } from "framer-motion";
 import { toast } from "react-toastify";
 
 export const InitialPage = () => {
+  useEffect(() => {
+    sessionStorage.clear();
+  }, []);
+
   const [isRegister, setIsRegister] = useState<boolean>(false);
   useEffect(() => {
     setTimeout(

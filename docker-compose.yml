@@ -14,8 +14,8 @@ services:
       timeout: 5s
       retries: 5
       start_period: 5s
-    volumes:
-      - filerequest:/var/lib/postgresql/data
+    # volumes:
+    #   - filerequest:/var/lib/postgresql/data
     
   migrations:
     container_name: migrations
@@ -56,6 +56,6 @@ services:
       - ./frontend:/usr/app
 
     
-volumes:
-  filerequest:
-    external: true
+# volumes:
+#   filerequest:
+#     external: true
