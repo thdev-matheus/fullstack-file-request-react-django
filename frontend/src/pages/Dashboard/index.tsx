@@ -123,11 +123,14 @@ export const Dashboard = () => {
       />
 
       <CardContainer>
-        {/* box dos cards */}
         {stores &&
           stores.map((store) => (
-            <div key={store.id}>
-              {/* card */}
+            <div
+              key={store.id}
+              onClick={() => {
+                navigate(`/pages/${store.name}`);
+              }}
+            >
               <span>{store.name}</span>
             </div>
           ))}

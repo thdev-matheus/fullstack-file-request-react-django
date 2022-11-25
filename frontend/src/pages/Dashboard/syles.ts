@@ -49,8 +49,40 @@ export const HeaderContainer = styled.div`
 `;
 
 export const CardContainer = styled.div`
+  width: 80vw;
+
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
+
+  margin-top: 2rem;
+
+  & > div {
+    width: 15rem;
+    height: 3rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 0.8rem;
+
+    color: var(--black);
+    background-color: var(--silver);
+
+    cursor: pointer;
+
+    transition: 0.8s;
+
+    :hover {
+      background-color: var(--gray);
+
+      transition: 0.8s;
+    }
+
+    & > span {
+      font-weight: bold;
+    }
+  }
 `;
