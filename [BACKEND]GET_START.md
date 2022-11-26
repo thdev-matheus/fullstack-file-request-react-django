@@ -49,6 +49,18 @@ SECRET_KEY=(escolha uma chave secreta para a aplicação)
 - Agora abra um terminal, no vs code mesmo e digite os seguintes comandos:
 
 ```shell
+python -m venv venv
+```
+
+```shell
+source venv/bin/activate
+```
+
+```shell
+pip install -r requirements.txt
+```
+
+```shell
 TESTE=TESTE python manage.py migrate
 ```
 
