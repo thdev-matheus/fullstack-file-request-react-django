@@ -21,7 +21,24 @@
 
 Uma aplicação full stack que simula o envio de um arquivo .txt pelo front end, com os dados das transações de algumas lojas. No back end os dados dos arquivos são persistidos no banco de dados o qual o front end tem acesso e renderiza as informações na tela.
 
+## Executando em Ambiente de Desenvolvimento
+
+<a href="https://github.com/thdev-matheus/fullstack-file-request-react-django/blob/develop/%5BDOCKER%5DGET_START.md" target="_self">Com o Docker e Docker-compose</a>
+
+<a href="https://github.com/thdev-matheus/fullstack-file-request-react-django/blob/develop/%5BFULLSTACK%5DGET_START.md" target="_self">Em terminais separados</a>
+
+<a href="https://github.com/thdev-matheus/fullstack-file-request-react-django/blob/develop/%5BBACKEND%5DGET_START.md" target="_self">Somente o back end</a>
+
+## Links úteis
+
+<a href="https://thdev-matheus.github.io/fullstack-file-request-react-django/" target="_self">Documentação do back end</a>
+
+<a href="https://drive.google.com/uc?id=1AX_cHpGvhqC5OXoA-oi38jQcPVWEI5yO&authuser=1&export=download" target="_self">Arquivo json para o insomnia</a>
+
+<a href="https://drive.google.com/uc?id=11t-FKXvZyZ_2-jbCwr35BETpgrvYTVfj&authuser=1&export=download" target="_self">Arquivo .txt para envio</a>
+
 <br />
+
 
 <div style="display: inline-block">
     <img width="46%" src="https://i.ibb.co/3mhdCyQ/image.png" alt="imagem">
