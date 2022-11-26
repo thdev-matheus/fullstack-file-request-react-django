@@ -65,6 +65,8 @@ O ideal para testar a aplicação é usar um cliente http tal com o insomnia. Ma
 <br>
 <br>
 
+<a href="https://drive.google.com/uc?id=1AX_cHpGvhqC5OXoA-oi38jQcPVWEI5yO&authuser=1&export=download" target="_self">ARQUIVO DO INSOMNIA COM AS ROTAS</a>
+
 <a href="https://thdev-matheus.github.io/fullstack-file-request-react-django/" target="_blank">CONSULTE A DOCUMENTAÇÃO AQUI!</a>
 
 <br>

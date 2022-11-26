@@ -45,6 +45,15 @@ SECRET_KEY=(escolha uma chave secreta para a aplicação)
 
 - Agora que já configurou o .env o backend está pronto para ser iniciado. Vamos para a configuração do front.
 
+- Logo após preencher o .env corretamente abra o arquivo docker-compose.yml e altere a linha de test no healthcheck do serviço de database com os dados que preencheu no arquivo .env.
+
+```docker-compose.yml
+test: ["CMD-SHELL", "pg_isready -U <usuário_do_.env> -d <database_do_.env>"]
+
+```
+
+- agora estamos prontos para configurar o front end.
+
 <br>
 
 ## Configurando o Front:
